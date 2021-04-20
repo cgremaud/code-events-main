@@ -3,13 +3,20 @@
 <head th:replace = "fragments :: head">
 
 </head>
-<body>
+<body class = "container">
     <h1 th:replace = "fragments :: styledHeader"></h1>
     <th:block th:if = "${eventsList.size()}">
-        <ul>
-            <li th:each = "event : ${eventsList}" th:text = "${event}"></li>
-            <a href = "create">Create Event</a><!--I don't understand why this works but it doesn't in the th:unless block -->
-        </ul>
+    <table class = "table">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tr th:each = "event : ${eventsList}" >
+            <td th:text = "${event}"></td>
+        </tr>
+    </table>
+    <a href = "create">Create Event</a><!--I don't understand why this works but it doesn't in the th:unless block -->
     </th:block>
 
     <th:block th:unless = "${eventsList.size()}">
