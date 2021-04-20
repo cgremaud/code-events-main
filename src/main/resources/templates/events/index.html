@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title th:text = "${title}"></title>
+<head th:replace = "fragments :: head">
+
 </head>
 <body>
     <h1 th:replace = "fragments :: styledHeader"></h1>
@@ -17,5 +16,7 @@
         <p>No events yet!</p>
         <a href = "events/create">Create Event</a> <!-- If I just put "create" here, it takes me to root/create. Not events/create -->
     </th:block>
+    <nav th:replace = "fragments :: navLinks"></nav>
+    <div th:replace = "fragments :: linkList"></div>
 </body>
 </html>

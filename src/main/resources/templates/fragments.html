@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th = "https://www.thymeleaf.org">
-<head>
+<head th:fragment = "head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Coding Events</title>
+
+    <script th:src = "@{/script.js}"></script>
+    <link th:href = "@{/styles.css}" rel = "stylesheet">
+
 </head>
 <body>
 
@@ -14,6 +18,15 @@
     <a href = "https://www.lego.com">Play Well</a> <br/>
     <a href = "https://www.webelements.com">Other Building Blocks</a>
   </div>
+
+  <nav th:fragment = "navLinks">
+      <ul>
+          <li><a href = "events">Events List</a></li>
+          <li><a href = "events/create">Create Event</a></li>
+          <li><a href = "../">Home</a></li>
+      </ul>
+  </nav>
+
 
 </body>
 </html>

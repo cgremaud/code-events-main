@@ -35,4 +35,9 @@ public class EventController {
         eventsList.add(name);
         return "redirect:"; //might need to return redirect: here. Not sure
     }
+//
+//    @GetMapping("returnHome")
+//    public String returnHome() {
+//        return "index";
+//    }
 }
