@@ -5,6 +5,7 @@
 </head>
 <body class = "container">
     <h1 th:replace = "fragments :: styledHeader"></h1>
+    <nav th:replace = "fragments :: navLinks"></nav>
     <th:block th:if = "${eventsList.size()}">
     <table class = "table">
         <thead>
@@ -23,7 +24,7 @@
         <p>No events yet!</p>
         <a href = "events/create">Create Event</a> <!-- If I just put "create" here, it takes me to root/create. Not events/create -->
     </th:block>
-    <nav th:replace = "fragments :: navLinks"></nav>
+
     <div th:replace = "fragments :: linkList"></div>
 </body>
 </html>
