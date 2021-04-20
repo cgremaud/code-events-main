@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 @RequestMapping("events")
 public class EventController {
-//    private static List<String> eventsList = new ArrayList<>();
+
     private static List<HashMap<String, String>> eventsList = new ArrayList<>(); //Should be a list of HashMaps though?
     @GetMapping
     public String index (Model model) {
@@ -45,14 +45,7 @@ public class EventController {
         event.put("name", name);
         event.put("description", description);
         eventsList.add(event);
-//        eventsList.put("name", name);
-//        eventsList.put("description", description);
 
         return "redirect:"; //might need to return redirect: here. Not sure
     }
-//    This ain't workin for some reason
-//    @GetMapping("returnHome")
-//    public String returnHome() {
-//        return "redirect:/index";
-//    }
 }
