@@ -11,18 +11,20 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Description</th>
             </tr>
         </thead>
         <tr th:each = "event : ${eventsList}" >
-            <td th:text = "${event}"></td>
+            <td th:text = '${event.get("name")}'></td>
+            <td th:text = '${event.get("description")}'></td>
         </tr>
     </table>
-    <a href = "create">Create Event</a><!--I don't understand why this works but it doesn't in the th:unless block -->
+    <a href = "/events/create">Create Event</a>
     </th:block>
 
     <th:block th:unless = "${eventsList.size()}">
         <p>No events yet!</p>
-        <a href = "events/create">Create Event</a> <!-- If I just put "create" here, it takes me to root/create. Not events/create -->
+        <a href = "/events/create">Create Event</a>
     </th:block>
 
     <div th:replace = "fragments :: linkList"></div>
