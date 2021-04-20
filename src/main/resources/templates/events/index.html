@@ -5,6 +5,7 @@
     <title th:text = "${title}"></title>
 </head>
 <body>
+    <h1 th:replace = "fragments :: styledHeader"></h1>
     <th:block th:if = "${eventsList.size()}">
         <ul>
             <li th:each = "event : ${eventsList}" th:text = "${event}"></li>
