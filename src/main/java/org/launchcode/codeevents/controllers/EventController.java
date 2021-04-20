@@ -4,6 +4,7 @@ package org.launchcode.codeevents.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,12 +19,20 @@ public class EventController {
     @GetMapping
     public String index (Model model) {
         String title = "Events List: All";
+        model.addAttribute("title", title);
+        model.addAttribute("eventsList", eventsList);
         return "events/index";
     }
 
     @GetMapping("create")
-    public String createEvent(Model model, @RequestParam String name) {
+    public String renderCreateEventForm(Model model) {
 
         return "events/create";
+    }
+
+    @PostMapping("create")
+    public String generateNewEvent(@RequestParam String name) {
+        eventsList.add(name);
+        return "redirect:"; //might need to return redirect: here. Not sure
     }
 }
