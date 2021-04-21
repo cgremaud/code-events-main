@@ -7,14 +7,16 @@
     <h1 th:replace = "fragments :: styledHeader"></h1>
     <nav th:replace = "fragments :: navLinks"></nav>
     <th:block th:if = "${eventsList.size()}">
-    <table class = "table">
+    <table class = "table table-striped">
         <thead>
             <tr>
+                <th>ID No.</th>
                 <th>Name</th>
                 <th>Description</th>
             </tr>
         </thead>
         <tr th:each = "event : ${eventsList}" >
+            <td th:text = "${event.getId}"></td>
             <td th:text = '${event.getName()}'></td>
             <td th:text = '${event.getDescription()}'></td>
         </tr>
