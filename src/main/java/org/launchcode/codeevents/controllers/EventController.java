@@ -23,7 +23,7 @@ public class EventController {
     public String index (Model model) {
         String title = "Events List: All";
         model.addAttribute("title", title);
-        model.addAttribute("eventsList", EventData.getAll());
+        model.addAttribute("events", EventData.getAll());
 
         return "events/index";
     }
@@ -40,6 +40,21 @@ public class EventController {
         Event event = new Event(name, description);
         EventData.add(event);
 
+        return "redirect:";
+    }
+
+    @GetMapping("delete")
+    public String displayDeleteEventForm(Model model){
+        model.addAttribute("title", "Delete Events");
+        model.addAttribute("events", EventData.getAll());
+        return "events/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteEventsForm(@RequestParam int[] eventIds) {
+        for (int id : eventIds) {
+            EventData.remove(id);
+        }
         return "redirect:";
     }
 }

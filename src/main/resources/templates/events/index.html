@@ -6,7 +6,7 @@
 <body class = "container">
     <h1 th:replace = "fragments :: styledHeader"></h1>
     <nav th:replace = "fragments :: navLinks"></nav>
-    <th:block th:if = "${eventsList.size()}">
+    <th:block th:if = "${events.size()}">
     <table class = "table table-striped">
         <thead>
             <tr>
@@ -15,7 +15,7 @@
                 <th>Description</th>
             </tr>
         </thead>
-        <tr th:each = "event : ${eventsList}" >
+        <tr th:each = "event : ${events}" >
             <td th:text = "${event.getId}"></td>
             <td th:text = '${event.getName()}'></td>
             <td th:text = '${event.getDescription()}'></td>
@@ -24,7 +24,7 @@
     <a href = "/events/create">Create Event</a>
     </th:block>
 
-    <th:block th:unless = "${eventsList.size()}">
+    <th:block th:unless = "${events.size()}">
         <p>No events yet!</p>
         <a href = "/events/create">Create Event</a>
     </th:block>
