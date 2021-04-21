@@ -5,10 +5,7 @@ import org.launchcode.codeevents.data.EventData;
 import org.launchcode.codeevents.models.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,9 +33,9 @@ public class EventController {
     }
 
     @PostMapping("create")
-    public String generateNewEvent(@RequestParam String name, @RequestParam String description) {
-        Event event = new Event(name, description);
-        EventData.add(event);
+    public String generateNewEvent(@ModelAttribute Event newEvent) {
+
+        EventData.add(newEvent);
 
         return "redirect:";
     }
@@ -51,9 +48,11 @@ public class EventController {
     }
 
     @PostMapping("delete")
-    public String processDeleteEventsForm(@RequestParam int[] eventIds) {
-        for (int id : eventIds) {
-            EventData.remove(id);
+    public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds) {
+        if(eventIds != null) {
+            for (int id : eventIds) {
+                EventData.remove(id);
+            }
         }
         return "redirect:";
     }
