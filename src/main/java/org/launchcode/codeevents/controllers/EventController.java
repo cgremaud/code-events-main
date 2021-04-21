@@ -1,6 +1,7 @@
 package org.launchcode.codeevents.controllers;
 
 
+import org.launchcode.codeevents.data.EventData;
 import org.launchcode.codeevents.models.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,23 +18,12 @@ import java.util.List;
 @RequestMapping("events")
 public class EventController {
 
-//    private static List<HashMap<String, String>>eventsList = new ArrayList<>(); //Should be a list of HashMaps though?
-    private static List<Event> eventsList = new ArrayList<>();
-
-//    private static HashMap<String, String> event1 = new HashMap<>();
-
-//    public static void initializeEventsList() {
-////        event1.put("name", "WWDC");
-////        event1.put("description", "Apple's Wordwide Dev Conf");
-////        eventsList.add();
-//
-//    }
 
     @GetMapping
     public String index (Model model) {
         String title = "Events List: All";
         model.addAttribute("title", title);
-        model.addAttribute("eventsList", eventsList);
+        model.addAttribute("eventsList", EventData.getAll());
 
         return "events/index";
     }
@@ -48,7 +38,7 @@ public class EventController {
     @PostMapping("create")
     public String generateNewEvent(@RequestParam String name, @RequestParam String description) {
         Event event = new Event(name, description);
-        eventsList.add(event);
+        EventData.add(event);
 
         return "redirect:";
     }
