@@ -31,31 +31,22 @@ public class EventController {
 
     @GetMapping
     public String index (Model model) {
-
-//        HashMap<String, String> event1 = new HashMap<>();
-        //TODO this is causing an issue because it's being called and added every time a request is made to /events
-        //no clue how to get it to call ONCE and then leave eventsList alone. . .
-        //The solution will probably involve the M bit of MVC
-//        initializeEventsList();
-
-
         String title = "Events List: All";
         model.addAttribute("title", title);
         model.addAttribute("eventsList", eventsList);
+
         return "events/index";
     }
 
     @GetMapping("create")
     public String renderCreateEventForm(Model model) {
         String title = "Create Event";
+
         return "events/create";
     }
 
     @PostMapping("create")
     public String generateNewEvent(@RequestParam String name, @RequestParam String description) {
-//        HashMap<String, String> event = new HashMap<>();
-//        event.put("name", name);
-//        event.put("description", description);
         Event event = new Event(name, description);
         eventsList.add(event);
 
