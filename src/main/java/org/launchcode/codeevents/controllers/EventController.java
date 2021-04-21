@@ -56,4 +56,16 @@ public class EventController {
         }
         return "redirect:";
     }
+
+    @GetMapping("edit")
+    public String displayEditForm(Model model, int id) {
+        //TODO finish edit event form template
+        return "edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditForm(int eventId, String name, String description){
+        //TODO finish processEditForm method
+        return "redirect:";
+    }
 }
