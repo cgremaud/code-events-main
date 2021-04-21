@@ -15,8 +15,8 @@
             </tr>
         </thead>
         <tr th:each = "event : ${eventsList}" >
-            <td th:text = '${event.get("name")}'></td>
-            <td th:text = '${event.get("description")}'></td>
+            <td th:text = '${event.getName()}'></td>
+            <td th:text = '${event.getDescription()}'></td>
         </tr>
     </table>
     <a href = "/events/create">Create Event</a>
