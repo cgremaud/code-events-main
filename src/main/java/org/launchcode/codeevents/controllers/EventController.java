@@ -65,7 +65,6 @@ public class EventController {
 
     @PostMapping("edit")
     public String processEditForm(@RequestParam int eventId, @RequestParam String name, @RequestParam String description){
-        //TODO finish processEditForm method
         Event eventToEdit = EventData.getById(eventId);
         eventToEdit.setName(name);
         eventToEdit.setDescription(description);
