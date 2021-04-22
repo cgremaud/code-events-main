@@ -19,6 +19,9 @@
             <td th:text = "${event.getId}"></td>
             <td th:text = '${event.getName()}'></td>
             <td th:text = '${event.getDescription()}'></td>
+            <td>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
+            </td>
         </tr>
     </table>
     <a href = "/events/create">Create Event</a>
