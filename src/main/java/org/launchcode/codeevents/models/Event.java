@@ -1,11 +1,8 @@
 package org.launchcode.codeevents.models;
 
-import org.jetbrains.annotations.NotNull;
-
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+ //TODO something to do with these import statements. I swear they WERE working at some point. No clue why not now.
+//import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.Size;
 import java.util.Objects;
 
 
@@ -14,14 +11,14 @@ public class Event {
     private int id;
     private static int nextId = 1;
 
-    @NotBlank
-    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
+//    @NotBlank
+//    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
     private String name;
 
-    @Size(max = 500, message = "Description must be less than 500 characters")
+//    @Size(max = 500, message = "Description must be less than 500 characters")
     private String description;
 
-    @Email(message = "Invalid email address. Try again")
+//    @Email(message = "Invalid email address. Try again")
     private String contactEmail;
 
     public Event(String name, String description) {

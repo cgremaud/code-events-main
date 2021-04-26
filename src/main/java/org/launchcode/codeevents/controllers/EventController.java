@@ -5,6 +5,7 @@ import org.launchcode.codeevents.data.EventData;
 import org.launchcode.codeevents.models.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class EventController {
     }
 
     @PostMapping("create")
-    public String generateNewEvent(@ModelAttribute Event newEvent) {
+    public String generateNewEvent(@ModelAttribute /* @Valid */ Event newEvent) { //TODO why is this annotation not working?
 
         EventData.add(newEvent);
 
