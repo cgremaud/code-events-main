@@ -6,6 +6,7 @@
 <body class = "container">
     <h1 th:replace = "fragments :: styledHeader"></h1>
     <nav th:replace = "fragments :: navLinks"></nav>
+    <p th:text="${errorMsg}" style="color:red;"></p>
     <th:block th:if = "${events.size()}">
     <table class = "table table-striped">
         <thead>

@@ -36,12 +36,11 @@ public class EventController {
     }
 
     @PostMapping("create")
-    public String generateNewEvent(@ModelAttribute  @Valid Event newEvent, Errors errors, Model model) { //This is why it is taking an email object despite the fact that the Event class constructor doesn't take an email object.
+    public String generateNewEvent(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) { //This is why it is taking an email object despite the fact that the Event class constructor doesn't take an email object.
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
             model.addAttribute("errorMsg", "Bad data!");
             return "events/create";
-
         }
         EventData.add(newEvent);
 
@@ -72,12 +71,16 @@ public class EventController {
     }
 
     @PostMapping("edit")
-    public String processEditForm(@RequestParam int eventId, @RequestParam String name, @RequestParam String description,
-                                  @RequestParam String contactEmail){
+    public String processEditForm(@RequestParam int eventId, @ ModelAttribute @Valid Event event, Errors errors, Model model){
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Create Event");
+            model.addAttribute("errorMsg", "Bad data!");
+            return "redirect:";
+        }
         Event eventToEdit = EventData.getById(eventId);
-        eventToEdit.setName(name);
-        eventToEdit.setDescription(description);
-        eventToEdit.setContactEmail(contactEmail);
+        eventToEdit.setName(event.getName());
+        eventToEdit.setDescription(event.getDescription());
+        eventToEdit.setContactEmail(event.getContactEmail());
         return "redirect:";
     }
 }
