@@ -6,6 +6,8 @@ import org.launchcode.codeevents.models.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import javax.validation.Valid;
+
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -34,8 +36,12 @@ public class EventController {
     }
 
     @PostMapping("create")
-    public String generateNewEvent(@ModelAttribute  @Valid Event newEvent) { //TODO Ok so it's "working" but IntelliJ doesn't like it for some reason
-
+    public String generateNewEvent(@ModelAttribute  @Valid Event newEvent, Errors errors, Model model) { //TODO Ok so it's "working" but IntelliJ doesn't like it for some reason
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Create Event");
+            model.addAttribute("errorMsg", "Bad data!");
+            return "events/create";
+        }
         EventData.add(newEvent);
 
         return "redirect:";

@@ -6,6 +6,7 @@
 <body class = "container">
   <h1>Create Event</h1>
   <nav th:replace = "fragments :: navLinks"></nav>
+  <p th:text="${errorMsg}" style="color:red;"></p> <!-- this makes sense because  if errorMsg is empty, it just won't show up as text-->
   <form action = "create" method = "post">
     <div class = "form-group">
       <label> Event Name

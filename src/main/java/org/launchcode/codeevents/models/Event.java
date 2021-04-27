@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Event {
 
     private int id;
-    private static int nextId = 1;
+    private static int nextId = 1; //TODO note to self: this count still increments even if creating an object throws an error.
 
     @Email(message = "Invalid email address.")
     private String contactEmail;
