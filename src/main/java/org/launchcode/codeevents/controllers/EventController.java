@@ -36,11 +36,12 @@ public class EventController {
     }
 
     @PostMapping("create")
-    public String generateNewEvent(@ModelAttribute  @Valid Event newEvent, Errors errors, Model model) { //TODO Ok so it's "working" but IntelliJ doesn't like it for some reason
+    public String generateNewEvent(@ModelAttribute  @Valid Event newEvent, Errors errors, Model model) { //This is why it is taking an email object despite the fact that the Event class constructor doesn't take an email object.
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
             model.addAttribute("errorMsg", "Bad data!");
             return "events/create";
+
         }
         EventData.add(newEvent);
 
@@ -71,10 +72,12 @@ public class EventController {
     }
 
     @PostMapping("edit")
-    public String processEditForm(@RequestParam int eventId, @RequestParam String name, @RequestParam String description){
+    public String processEditForm(@RequestParam int eventId, @RequestParam String name, @RequestParam String description,
+                                  @RequestParam String contactEmail){
         Event eventToEdit = EventData.getById(eventId);
         eventToEdit.setName(name);
         eventToEdit.setDescription(description);
+        eventToEdit.setContactEmail(contactEmail);
         return "redirect:";
     }
 }
