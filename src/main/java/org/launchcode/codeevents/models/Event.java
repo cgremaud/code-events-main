@@ -13,6 +13,7 @@ public class Event {
     private static int nextId = 1; //TODO note to self: this count still increments even if creating an object throws an error.
 
     @NotBlank
+    //can't get this to throw an error when editing an event. It will accept an invalid Email.
     @Email(message = "Invalid email address.") //this only checks to see if it's X@Y, doesn't need a .com or anything to pass validation.
     private String contactEmail;
 
@@ -29,9 +30,13 @@ public class Event {
     public Event(String name, String description, String contactEmail) {
         this.name = name;
         this.description = description;
+        this.contactEmail = contactEmail;
+
+    }
+
+    public Event()  {
         this.id = nextId;
-        this.contactEmail = contactEmail; //the fact that it worked without this line before means that Spring isn't really calling the constructor per se when it creates a new Event object. It was able to add an event to the list with
-        nextId++;
+        nextId++
     }
 
     public String getName() {
