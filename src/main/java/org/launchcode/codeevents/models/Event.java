@@ -28,6 +28,7 @@ public class Event {
 
 
     public Event(String name, String description, String contactEmail) {
+        this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
@@ -36,7 +37,7 @@ public class Event {
 
     public Event()  {
         this.id = nextId;
-        nextId++
+        nextId++;
     }
 
     public String getName() {
