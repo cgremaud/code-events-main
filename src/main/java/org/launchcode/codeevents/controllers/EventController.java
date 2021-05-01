@@ -33,7 +33,7 @@ public class EventController {
     public String renderCreateEventForm(Model model) {
         String title = "Create Event";
         model.addAttribute("title", "Create Event");
-        model.addAttribute("event", new Event());
+        model.addAttribute("event", new Event()); //you do this so that the create event form can see/bind Event objects and know what the validation reqs are.
 
         return "events/create";
     }

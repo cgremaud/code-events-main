@@ -9,19 +9,19 @@ import java.util.Objects;
 
 public class Event {
 
-    private int id;
+    private final int id;
     private static int nextId = 1; //TODO note to self: this count still increments even if creating an object throws an error.
 
-    @NotBlank
+    @NotBlank(message = "email cannot be blank")
     //can't get this to throw an error when editing an event. It will accept an invalid Email.
     @Email(message = "Invalid email address.") //this only checks to see if it's X@Y, doesn't need a .com or anything to pass validation.
     private String contactEmail;
 
-    @NotBlank
+    @NotBlank(message = "Must have a name")
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
     private String name;
 
-    @NotBlank
+
     @Size(max = 500, message = "Description must be less than 500 characters")
     private String description;
 
