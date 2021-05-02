@@ -24,6 +24,7 @@
       <label>Attendees
         <input th:field="${event.attendees}" class = "form-control"/>
       </label><br>
+      <p class = "error" th:errors = "${event.attendees}"></p>
       <label>Location
         <input th:field="${event.location}" class = "form-control"/>
       </label><br>

@@ -33,16 +33,13 @@ public class EventController {
     public String renderCreateEventForm(Model model) {
         String title = "Create Event";
         model.addAttribute("title", "Create Event");
-        model.addAttribute("event", new Event()); //you do this so that the create event form can see/bind Event objects and know what the validation reqs are.
-
+        model.addAttribute("event", new Event()); //Side effect of this is that now nextId increments every time you make a GET request to /create
         return "events/create";
     }
 
     @PostMapping("create")
     public String generateNewEvent(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) { //This is why it is taking an email object despite the fact that the Event class constructor doesn't take an email object.
         if (errors.hasErrors()) {
-//            List<ObjectError> errorsList = new ArrayList<>();
-//            errorsList = errors.getAllErrors();
             model.addAttribute("title", "Create Event");
             model.addAttribute("errorMsg", "Bad data!");
             return "events/create";

@@ -15,13 +15,18 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Contact Email</th>
+                <th>Location</th>
+                <th>Registration Required? </th>
             </tr>
         </thead>
+<!--        TODO Update table to display location, attendees and registration req'd properties-->
         <tr th:each = "event : ${events}" >
             <td th:text = "${event.getId}"></td>
             <td th:text = '${event.getName()}'></td>
             <td th:text = '${event.getDescription()}'></td>
-            <td th:text = '${event.getContactEmail}'></td>
+            <td th:text = '${event.getContactEmail()}'></td>
+            <td th:text = '${event.getLocation()}'></td>
+            <td><span th:if="${event.isRegistrationRequired()}">Yes</span><span th:unless="${event.isRegistrationRequired()}">No</span></td>
             <td>
                 <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a><span class = "glyphicon glyphicon-pencil"></span>
             </td>
