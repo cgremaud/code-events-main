@@ -23,8 +23,8 @@
             <td th:text = '${event.getDescription()}'></td>
             <td th:text = '${event.getContactEmail}'></td>
             <td>
-                <a th:href="@{/events/edit/{id}(id=${event.id})}"><span class = "glyphicon glyphicon-pencil"></span>Edit</a>
-            </td>n
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a><span class = "glyphicon glyphicon-pencil"></span>
+            </td>
         </tr>
     </table>
     <a href = "/events/create">Create Event</a>
