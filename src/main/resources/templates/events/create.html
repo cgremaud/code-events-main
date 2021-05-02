@@ -29,7 +29,7 @@
       </label><br>
       <p class = "error" th:errors = "${event.location}"></p>
       <label>Registration required?
-        <input th:field="${event.registrationRequired}" value="true" class = "form-control"/>
+        <input th:field="${event.registrationRequired}" value="true" type="checkbox" class = "form-control"/>
       </label><br>
       <p class = "error" th:errors = "${event.registrationRequired}"></p>
     </div>
