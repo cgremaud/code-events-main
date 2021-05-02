@@ -38,7 +38,7 @@ public class EventController {
     }
 
     @PostMapping("create")
-    public String generateNewEvent(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) { //This is why it is taking an email object despite the fact that the Event class constructor doesn't take an email object.
+    public String generateNewEvent(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
             model.addAttribute("errorMsg", "Bad data!");
