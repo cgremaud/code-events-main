@@ -1,6 +1,8 @@
 package org.launchcode.codeevents.models;
 
  //TODO something to do with these import statements. I swear they WERE working at some point. No clue why not now.
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Email;
@@ -30,7 +32,8 @@ public class Event {
 
     private boolean registrationRequired;
 
-    @NotBlank(message = "Number of attendees must be greater than 0")
+    //this @NotBlank breaks create event for some reason.
+//    @NotBlank(message = "Number of attendees must be greater than 0")
     private int attendees;
 
 

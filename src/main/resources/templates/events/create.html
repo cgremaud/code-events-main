@@ -23,14 +23,15 @@
       <p class = "error" th:errors = "${event.contactEmail}"></p>
       <label>Attendees
         <input th:field="${event.attendees}" class = "form-control"/>
-      </label>
+      </label><br>
       <label>Location
         <input th:field="${event.location}" class = "form-control"/>
-      </label>
+      </label><br>
       <p class = "error" th:errors = "${event.location}"></p>
       <label>Registration required?
-        <input th:field="${event.registrationRequired}" value="true"/>
-      </label>
+        <input th:field="${event.registrationRequired}" value="true" class = "form-control"/>
+      </label><br>
+      <p class = "error" th:errors = "${event.registrationRequired}"></p>
     </div>
     <div class = "form-group">
       <input type = "submit" value = "Submit" class = "btn btn-success" />
