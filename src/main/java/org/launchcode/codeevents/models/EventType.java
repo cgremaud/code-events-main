@@ -2,7 +2,7 @@ package org.launchcode.codeevents.models;
 
 public enum EventType {
 
-    CONFERENCE("Conference"),
+    CONFERENCE("Conference"), //so each of these is somehow a call to the constructor? Since it takes display name as an argument?
     MEETUP("Meetup"),
     WORKSHOP("Workshop"),
     SOCIAL("Social");

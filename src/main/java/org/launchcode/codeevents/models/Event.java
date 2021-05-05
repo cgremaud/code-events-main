@@ -24,7 +24,6 @@ public class Event {
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
     private String name;
 
-
     @Size(max = 500, message = "Description must be fewer than 500 characters")
     private String description;
 
@@ -36,8 +35,10 @@ public class Event {
     @Min(value = 1, message = "Number of attendees must be greater than 0")
     private int attendees;
 
+    private EventType type;
 
-    public Event(String contactEmail, String name, String description, String location, boolean registrationRequired, int attendees) {
+
+    public Event(String contactEmail, String name, String description, String location, boolean registrationRequired, int attendees, EventType type) {
         this();
         this.contactEmail = contactEmail;
         this.name = name;
@@ -45,6 +46,7 @@ public class Event {
         this.location = location;
         this.registrationRequired = registrationRequired;
         this.attendees = attendees;
+        this.type = type;
     }
 
     public Event()  {
@@ -102,6 +104,14 @@ public class Event {
 
     public void setRegistrationRequired(boolean registrationRequired) {
         this.registrationRequired = registrationRequired;
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
     }
 
     @Override
