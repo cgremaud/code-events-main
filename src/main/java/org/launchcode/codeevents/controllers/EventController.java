@@ -3,6 +3,7 @@ package org.launchcode.codeevents.controllers;
 
 import org.launchcode.codeevents.data.EventData;
 import org.launchcode.codeevents.models.Event;
+import org.launchcode.codeevents.models.EventType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import javax.validation.Valid;
@@ -34,6 +35,7 @@ public class EventController {
         String title = "Create Event";
         model.addAttribute("title", "Create Event");
         model.addAttribute("event", new Event()); //Side effect of this is that now nextId increments every time you make a GET request to /create
+        model.addAttribute("types", EventType.values());
         return "events/create";
     }
 

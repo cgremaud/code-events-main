@@ -29,6 +29,14 @@
         <input th:field="${event.location}" class = "form-control"/>
       </label><br>
       <p class = "error" th:errors = "${event.location}"></p>
+      <label> Type
+        <select th:field="${event.type}">
+          <option th:each="type : ${types}"
+                  th:value="${type}"
+                  th:text="${type.displayName}"
+          ></option>
+        </select>
+      </label> <br />
       <label>Registration required?
         <input th:field="${event.registrationRequired}" value="true" type="checkbox" class = "form-control"/>
       </label><br>

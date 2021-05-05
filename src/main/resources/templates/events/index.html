@@ -16,16 +16,18 @@
                 <th>Description</th>
                 <th>Contact Email</th>
                 <th>Location</th>
+                <th>Type</th>
                 <th>Registration Required? </th>
             </tr>
         </thead>
-<!--        TODO Update table to display location, attendees and registration req'd properties-->
+<!--        TODO refactor to implicitly call getter rather than explicitly?-->
         <tr th:each = "event : ${events}" >
             <td th:text = "${event.getId}"></td>
-            <td th:text = '${event.getName()}'></td>
-            <td th:text = '${event.getDescription()}'></td>
-            <td th:text = '${event.getContactEmail()}'></td>
-            <td th:text = '${event.getLocation()}'></td>
+            <td th:text = '${event.name}'></td>
+            <td th:text = '${event.description}'></td>
+            <td th:text = '${event.contactEmail}'></td>
+            <td th:text = '${event.location}'></td>
+            <td th:text = '${event.type.displayName}'></td>
             <td><span th:if="${event.isRegistrationRequired()}">Yes</span><span th:unless="${event.isRegistrationRequired()}">No</span></td>
             <td>
                 <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a><span class = "glyphicon glyphicon-pencil"></span>
