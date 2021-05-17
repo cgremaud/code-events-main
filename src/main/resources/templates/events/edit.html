@@ -6,7 +6,7 @@
 <body class = "container">
 <h1>Edit Event</h1>
 <nav th:replace = "fragments :: navLinks"></nav>
-<!--TODO refactor to redirect back to events/edit with error messages when bad data given-->
+<!--TODO refactor to redirect back to events/edit with error messages when bad data given and add fields to edit EventType, location etc. -->
 <form th:action = "@{/events/edit}" method = "post">
     <div class = "form-group">
         <label> Event Name
