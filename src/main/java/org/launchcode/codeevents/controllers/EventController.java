@@ -2,8 +2,10 @@ package org.launchcode.codeevents.controllers;
 
 
 import org.launchcode.codeevents.data.EventData;
+import org.launchcode.codeevents.data.EventRepository;
 import org.launchcode.codeevents.models.Event;
 import org.launchcode.codeevents.models.EventType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import javax.validation.Valid;
@@ -19,13 +21,16 @@ import java.util.List;
 @Controller
 @RequestMapping("events")
 public class EventController {
+    @Autowired
+    private EventRepository eventRepository;
 
+    //findAll, save, findBy
 
     @GetMapping
     public String index (Model model) {
         String title = "Events List: All";
         model.addAttribute("title", title);
-        model.addAttribute("events", EventData.getAll());
+        model.addAttribute("events", eventRepository.findAll());
 
         return "events/index";
     }
@@ -46,7 +51,7 @@ public class EventController {
             model.addAttribute("errorMsg", "Bad data!");
             return "events/create";
         }
-        EventData.add(newEvent);
+       eventRepository.save(newEvent);
 
         return "redirect:";
     }
@@ -54,7 +59,7 @@ public class EventController {
     @GetMapping("delete")
     public String displayDeleteEventForm(Model model){
         model.addAttribute("title", "Delete Events");
-        model.addAttribute("events", EventData.getAll());
+        model.addAttribute("events", eventRepository.findAll());
         return "events/delete";
     }
 
@@ -62,7 +67,7 @@ public class EventController {
     public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds) {
         if(eventIds != null) {
             for (int id : eventIds) {
-                EventData.remove(id);
+                eventRepository.deleteById(id);
             }
         }
         return "redirect:";
@@ -70,7 +75,7 @@ public class EventController {
 
     @GetMapping("edit/{id}")
     public String displayEditForm(Model model, @PathVariable int id) {
-        model.addAttribute("event", EventData.getById(id));
+        model.addAttribute("event", eventRepository.findById(id));
         return "events/edit";
     }
 
@@ -81,10 +86,13 @@ public class EventController {
             model.addAttribute("errorMsg", "Bad data!");
             return "redirect:";
         }
-        Event eventToEdit = EventData.getById(eventId);
-        eventToEdit.setName(event.getName());
-        eventToEdit.setDescription(event.getDescription());
-        eventToEdit.setContactEmail(event.getContactEmail());
+        //TODO this will break under the new persistent version. Not sure how to refactor it.
+        //I can get the event to edit by using .findById(eventId), but then how to update?
+        Object eventToEdit = eventRepository.findById(eventId);
+        ((Event) eventToEdit).setName(event.getName());
+        ((Event) eventToEdit).setDescription(event.getDescription());
+        ((Event) eventToEdit).setContactEmail(event.getContactEmail());
+        eventRepository.save(((Event) eventToEdit)); //Okay this might not work? But let's see.
         return "redirect:";
     }
 }

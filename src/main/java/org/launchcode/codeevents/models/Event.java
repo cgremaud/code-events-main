@@ -3,17 +3,22 @@ package org.launchcode.codeevents.models;
  //TODO something to do with these import statements. I swear they WERE working at some point. No clue why not now.
 import org.springframework.beans.factory.annotation.Value;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Email;
 import java.util.Objects;
 
-
+@Entity
 public class Event {
 
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1; //TODO note to self: this count still increments even if creating an object throws an error.
+//    private static int nextId = 1;
 
     @NotBlank(message = "email cannot be blank")
     //can't get this to throw an error when editing an event. It will accept an invalid Email.
@@ -39,7 +44,6 @@ public class Event {
 
 
     public Event(String contactEmail, String name, String description, String location, boolean registrationRequired, int attendees, EventType type) {
-        this();
         this.contactEmail = contactEmail;
         this.name = name;
         this.description = description;
@@ -49,10 +53,7 @@ public class Event {
         this.type = type;
     }
 
-    public Event()  {
-        this.id = nextId;
-        nextId++;
-    }
+    public Event()  {}
 
     public String getName() {
         return name;
