@@ -1,7 +1,6 @@
 package org.launchcode.codeevents.controllers;
 
 
-import org.launchcode.codeevents.data.EventData;
 import org.launchcode.codeevents.data.EventRepository;
 import org.launchcode.codeevents.models.Event;
 import org.launchcode.codeevents.models.EventType;
@@ -11,12 +10,7 @@ import org.springframework.ui.Model;
 import javax.validation.Valid;
 
 import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 @Controller
 @RequestMapping("events")
@@ -74,8 +68,9 @@ public class EventController {
     }
 
     @GetMapping("edit/{id}")
+    //it seems like it's breaking when the get request is sent,  not the post request, but i can't see anything wrong with this?
     public String displayEditForm(Model model, @PathVariable int id) {
-        model.addAttribute("event", eventRepository.findById(id));
+        model.addAttribute("event", eventRepository.findById(id)); //this should just return an event that gets displayed by the edit form.
         return "events/edit";
     }
 

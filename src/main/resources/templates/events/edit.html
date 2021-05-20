@@ -10,7 +10,7 @@
 <form th:action = "@{/events/edit}" method = "post">
     <div class = "form-group">
         <label> Event Name
-            <input type = "text" name = "name" class = "form-control" th:value="${event.getName()}" />
+            <input type = "text" name = "name" class = "form-control" th:value="${event.name}" /> <!- -This isn't getting the event object for some reason-->
         </label>
         <label> Event Description
             <input type = "text" name ="description" class = "form-control" th:value = "${event.description}"/>

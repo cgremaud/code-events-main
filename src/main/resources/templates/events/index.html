@@ -17,6 +17,7 @@
                 <th>Contact Email</th>
                 <th>Location</th>
                 <th>Type</th>
+                <th>Attendees</th>
                 <th>Registration Required? </th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
             <td th:text = '${event.contactEmail}'></td>
             <td th:text = '${event.location}'></td>
             <td th:text = '${event.type.displayName}'></td>
+            <td th:text = '${event.attendees}'></td>
             <td><span th:if="${event.isRegistrationRequired()}">Yes</span><span th:unless="${event.isRegistrationRequired()}">No</span></td>
             <td>
                 <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a><span class = "glyphicon glyphicon-pencil"></span>
