@@ -29,6 +29,7 @@ public class EventCategoryController {
     public String renderCreateEventCategoryForm(Model model) {
         EventCategory newEventCategory = new EventCategory();
         model.addAttribute("title", "Create Category");
+        model.addAttribute("eventCategory", newEventCategory);
 
         return "eventCategories/create";
     }
