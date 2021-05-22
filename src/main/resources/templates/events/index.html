@@ -21,7 +21,7 @@
                 <th>Registration Required? </th>
             </tr>
         </thead>
-<!--        TODO refactor to implicitly call getter rather than explicitly?-->
+
         <tr th:each = "event : ${events}" >
             <td th:text = "${event.getId}"></td>
             <td th:text = '${event.name}'></td>

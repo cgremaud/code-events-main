@@ -7,7 +7,7 @@ plugins {
 
 group = 'org.launchcode'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '15' //TODO this is a stretch, but maybe I changed this from 13 to 11 to 15 at some point?
+sourceCompatibility = '15'
 
 repositories {
 	mavenCentral()

@@ -1,6 +1,5 @@
 package org.launchcode.codeevents.models;
 
- //TODO something to do with these import statements. I swear they WERE working at some point. No clue why not now.
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.Entity;

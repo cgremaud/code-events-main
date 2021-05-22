@@ -67,7 +67,7 @@ public class EventController {
         return "redirect:";
     }
 
-    @GetMapping("edit/{id}")
+    @GetMapping("edit/{id}") //TODO Throws an error on any GET request to /edit. Try refactoring to use a request param?
     //it seems like it's breaking when the get request is sent,  not the post request, but i can't see anything wrong with this?
     public String displayEditForm(Model model, @PathVariable int id) {
         model.addAttribute("event", eventRepository.findById(id)); //this should just return an event that gets displayed by the edit form.
@@ -81,13 +81,12 @@ public class EventController {
             model.addAttribute("errorMsg", "Bad data!");
             return "redirect:";
         }
-        //TODO this will break under the new persistent version. Not sure how to refactor it.
-        //I can get the event to edit by using .findById(eventId), but then how to update?
+        //TODO Refactor this to work under persistent version.
         Object eventToEdit = eventRepository.findById(eventId);
-        ((Event) eventToEdit).setName(event.getName());
+        ((Event) eventToEdit).setName(event.getName()); //don't understand why this is required to satisfy intellij when eventRepository.findById should by definition return an event object.
         ((Event) eventToEdit).setDescription(event.getDescription());
         ((Event) eventToEdit).setContactEmail(event.getContactEmail());
-        eventRepository.save(((Event) eventToEdit)); //Okay this might not work? But let's see.
+        eventRepository.save(((Event) eventToEdit));
         return "redirect:";
     }
 }
