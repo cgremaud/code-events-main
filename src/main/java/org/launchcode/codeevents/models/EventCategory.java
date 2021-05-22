@@ -17,6 +17,8 @@ public class EventCategory {
         this.name = name;
     }
 
+    public EventCategory() {}
+
     public String getName() {
         return name;
     }
