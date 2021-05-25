@@ -69,7 +69,7 @@ public class EventController {
 
     @GetMapping("edit/{id}") //TODO Throws an error on any GET request to /edit. Try refactoring to use a request param?
     //it seems like it's breaking when the get request is sent,  not the post request, but i can't see anything wrong with this?
-    public String displayEditForm(Model model, @PathVariable int id) {
+    public String displayEditForm(Model model, @PathVariable int id, @ModelAttribute Event eventToEdit) {
         model.addAttribute("event", eventRepository.findById(id)); //this should just return an event that gets displayed by the edit form.
         return "events/edit";
     }

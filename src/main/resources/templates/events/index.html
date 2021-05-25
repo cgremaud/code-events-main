@@ -32,7 +32,7 @@
             <td th:text = '${event.attendees}'></td>
             <td><span th:if="${event.isRegistrationRequired()}">Yes</span><span th:unless="${event.isRegistrationRequired()}">No</span></td>
             <td>
-                <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a><span class = "glyphicon glyphicon-pencil"></span>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
             </td>
         </tr>
     </table>
