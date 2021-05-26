@@ -4,7 +4,6 @@ package org.launchcode.codeevents.controllers;
 import org.launchcode.codeevents.data.EventCategoryRepository;
 import org.launchcode.codeevents.data.EventRepository;
 import org.launchcode.codeevents.models.Event;
-import org.launchcode.codeevents.models.EventType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

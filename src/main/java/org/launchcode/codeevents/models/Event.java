@@ -1,20 +1,11 @@
 package org.launchcode.codeevents.models;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.*;
-import java.util.Objects;
 
 @Entity
 public class Event extends AbstractEntity {
-
-//    @Id
-//    @GeneratedValue
-//    private int id;
 
     @NotBlank(message = "email cannot be blank")
     @Email(message = "Invalid email address.") //this only checks to see if it's X@Y, doesn't need a .com or anything to pass validation.
@@ -35,10 +26,9 @@ public class Event extends AbstractEntity {
     @Min(value = 1, message = "Number of attendees must be greater than 0")
     private int attendees;
 
-    @ManyToOne //Tells hibernate that there can be Many events per category, but only one category per Event? Seems backwards.
+    @ManyToOne
     @NotNull(message = "Please select a category.")
     private EventCategory eventCategory;
-//    private EventType type;
 
 
     public Event(String contactEmail, String name, String description, String location, boolean registrationRequired, int attendees, EventCategory eventCategory) {
@@ -68,10 +58,6 @@ public class Event extends AbstractEntity {
     public void setDescription(String description) {
         this.description = description;
     }
-
-//    public int getId() {
-//        return id;
-//    }
 
     public String getContactEmail() {
         return contactEmail;
@@ -113,29 +99,11 @@ public class Event extends AbstractEntity {
         this.eventCategory = eventCategory;
     }
 
-    //    public EventType getType() {
-//        return type;
-//    }
-//
-//    public void setType(EventType type) {
-//        this.type = type;
-//    }
 
     @Override
     public String toString() {
         return "name='" + name + '\'' +", description='" + description + '\'';
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Event event = (Event) o;
-//        return id == event.id;
-//    }
 
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id);
-//    }
 }
