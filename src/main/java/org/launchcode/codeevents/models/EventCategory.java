@@ -5,11 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class EventCategory {
-
-    @Id
-    @GeneratedValue
-    private int id;
+public class EventCategory extends AbstractEntity {
+// inheriting this from AbstractEntity
+//    @Id
+//    @GeneratedValue
+//    private int id;
 
     private String name;
 
@@ -27,7 +27,7 @@ public class EventCategory {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
-    }
+//    public int getId() {
+//        return id;
+//    }
 }
