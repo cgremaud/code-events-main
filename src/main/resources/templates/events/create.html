@@ -29,11 +29,11 @@
         <input th:field="${event.location}" class = "form-control"/>
       </label><br>
       <p class = "error" th:errors = "${event.location}"></p>
-      <label> Type
-        <select th:field="${event.type}">
-          <option th:each="type : ${types}"
-                  th:value="${type}"
-                  th:text="${type.displayName}"
+      <label> Category
+        <select th:field="${event.eventCategory}">
+          <option th:each="eventCategory : ${categories}"
+                  th:value="${eventCategory.id}"
+                  th:text="${eventCategory.name}"
           ></option>
         </select>
       </label> <br />

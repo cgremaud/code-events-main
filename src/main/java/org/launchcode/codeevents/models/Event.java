@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.Email;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 @Entity
@@ -37,17 +35,20 @@ public class Event extends AbstractEntity {
     @Min(value = 1, message = "Number of attendees must be greater than 0")
     private int attendees;
 
-    private EventType type;
+    @ManyToOne //Tells hibernate that there can be Many events per category, but only one category per Event? Seems backwards.
+    @NotNull(message = "Please select a category.")
+    private EventCategory eventCategory;
+//    private EventType type;
 
 
-    public Event(String contactEmail, String name, String description, String location, boolean registrationRequired, int attendees, EventType type) {
+    public Event(String contactEmail, String name, String description, String location, boolean registrationRequired, int attendees, EventCategory eventCategory) {
         this.contactEmail = contactEmail;
         this.name = name;
         this.description = description;
         this.location = location;
         this.registrationRequired = registrationRequired;
         this.attendees = attendees;
-        this.type = type;
+        this.eventCategory = eventCategory;
     }
 
     public Event()  {}
@@ -104,13 +105,21 @@ public class Event extends AbstractEntity {
         this.registrationRequired = registrationRequired;
     }
 
-    public EventType getType() {
-        return type;
+    public EventCategory getEventCategory() {
+        return eventCategory;
     }
 
-    public void setType(EventType type) {
-        this.type = type;
+    public void setEventCategory(EventCategory eventCategory) {
+        this.eventCategory = eventCategory;
     }
+
+    //    public EventType getType() {
+//        return type;
+//    }
+//
+//    public void setType(EventType type) {
+//        this.type = type;
+//    }
 
     @Override
     public String toString() {

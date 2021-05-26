@@ -1,6 +1,7 @@
 package org.launchcode.codeevents.controllers;
 
 
+import org.launchcode.codeevents.data.EventCategoryRepository;
 import org.launchcode.codeevents.data.EventRepository;
 import org.launchcode.codeevents.models.Event;
 import org.launchcode.codeevents.models.EventType;
@@ -18,6 +19,9 @@ public class EventController {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private EventCategoryRepository eventCategoryRepository;
+
     //findAll, save, findBy
 
     @GetMapping
@@ -34,7 +38,7 @@ public class EventController {
         String title = "Create Event";
         model.addAttribute("title", "Create Event");
         model.addAttribute("event", new Event()); //Side effect of this is that now nextId increments every time you make a GET request to /create
-        model.addAttribute("types", EventType.values());
+        model.addAttribute("categories", eventCategoryRepository.findAll());
         return "events/create";
     }
 
