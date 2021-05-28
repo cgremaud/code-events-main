@@ -25,7 +25,7 @@
             <input th:field="${event.attendees}" class = "form-control"/>
         </label>
         <label> Type
-            <input th:field = "${event.type}"/>
+            <input th:field = "${event.eventCategory}"/>
         </label>
         <input type="hidden" th:value="${event.id}" name="eventId" />
     </div>

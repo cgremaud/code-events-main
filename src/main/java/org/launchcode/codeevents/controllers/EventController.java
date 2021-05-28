@@ -1,16 +1,19 @@
 package org.launchcode.codeevents.controllers;
 
-
 import org.launchcode.codeevents.data.EventCategoryRepository;
 import org.launchcode.codeevents.data.EventRepository;
 import org.launchcode.codeevents.models.Event;
+import org.launchcode.codeevents.models.EventCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import javax.validation.Valid;
 
+import javax.swing.text.html.Option;
+import javax.validation.Valid;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("events")
@@ -21,14 +24,23 @@ public class EventController {
     @Autowired
     private EventCategoryRepository eventCategoryRepository;
 
-    //findAll, save, findBy
-
     @GetMapping
-    public String index (Model model) {
-        String title = "Events List: All";
-        model.addAttribute("title", title);
-        model.addAttribute("events", eventRepository.findAll());
+    public String index (@RequestParam(required = false) Integer categoryId, Model model) {
+        if (categoryId == null) {
+            String title = "Events List: All";
+            model.addAttribute("title", title);
+            model.addAttribute("events", eventRepository.findAll());
+        } else {
+            Optional<EventCategory> result = eventCategoryRepository.findById(categoryId);
+            if (result.isEmpty()) {
+                model.addAttribute("title", "Invalid Category ID: " + categoryId);
+            } else {
+                EventCategory category = result.get();
+                model.addAttribute("title", "Events in the category " + category.getName());
+                model.addAttribute("events", category.getEvents());
+            }
 
+        }
         return "events/index";
     }
 
@@ -72,8 +84,10 @@ public class EventController {
 
     @GetMapping("edit/{id}") //TODO Throws an error on any GET request to /edit. Try refactoring to use a request param?
     //it seems like it's breaking when the get request is sent,  not the post request, but i can't see anything wrong with this?
-    public String displayEditForm(Model model, @PathVariable int id, @ModelAttribute Event eventToEdit) {
-        model.addAttribute("event", eventRepository.findById(id)); //this should just return an event that gets displayed by the edit form.
+    public String displayEditForm(Model model, @PathVariable int id) {
+        Optional<Event> result = eventRepository.findById(id);
+        Event eventToEdit = result.get();
+        model.addAttribute("event", eventToEdit); //this should just return an event that gets displayed by the edit form.
         return "events/edit";
     }
 
