@@ -14,21 +14,21 @@
       </label> <br>
       <p class = "error" th:errors = "${event.name}"></p>
       <label> Event Description
-        <input th:field="${event.description}" class = "form-control"/>
+        <input th:field="${event.eventDetails.description}" class = "form-control"/>
       </label><br>
-      <p class = "error" th:errors = "${event.description}"></p>
+      <p class = "error" th:errors = "${event.eventDetails.description}"></p>
       <label> Email
-        <input th:field="${event.contactEmail}" class = "form-control"/>
+        <input th:field="${event.eventDetails.contactEmail}" class = "form-control"/>
       </label><br>
-      <p class = "error" th:errors = "${event.contactEmail}"></p>
+      <p class = "error" th:errors = "${event.eventDetails.contactEmail}"></p>
       <label>Attendees
-        <input th:field="${event.attendees}" class = "form-control"/>
+        <input th:field="${event.eventDetails.attendees}" class = "form-control"/>
       </label><br>
-      <p class = "error" th:errors = "${event.attendees}"></p>
+      <p class = "error" th:errors = "${event.eventDetails.attendees}"></p>
       <label>Location
-        <input th:field="${event.location}" class = "form-control"/>
+        <input th:field="${event.eventDetails.location}" class = "form-control"/>
       </label><br>
-      <p class = "error" th:errors = "${event.location}"></p>
+      <p class = "error" th:errors = "${event.eventDetails.location}"></p>
       <label> Category
         <select th:field="${event.eventCategory}">
           <option th:each="eventCategory : ${categories}"
@@ -38,9 +38,9 @@
         </select>
       </label> <br />
       <label>Registration required?
-        <input th:field="${event.registrationRequired}" value="true" type="checkbox" class = "form-control"/>
+        <input th:field="${event.eventDetails.registrationRequired}" value="true" type="checkbox" class = "form-control"/>
       </label><br>
-      <p class = "error" th:errors = "${event.registrationRequired}"></p>
+      <p class = "error" th:errors = "${event.eventDetails.registrationRequired}"></p>
     </div>
     <div class = "form-group">
       <input type = "submit" value = "Submit" class = "btn btn-success" />

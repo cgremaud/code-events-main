@@ -4,6 +4,7 @@ import org.launchcode.codeevents.data.EventCategoryRepository;
 import org.launchcode.codeevents.data.EventRepository;
 import org.launchcode.codeevents.models.Event;
 import org.launchcode.codeevents.models.EventCategory;
+import org.launchcode.codeevents.models.EventDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -90,7 +91,7 @@ public class EventController {
 
     //TODO get this working again.
     @PostMapping("edit")
-    public String processEditForm(@RequestParam int eventId, @ ModelAttribute @Valid Event event, Errors errors, Model model){
+    public String processEditForm(@RequestParam int eventId, @ ModelAttribute @Valid Event event, EventDetails eventDetails, Errors errors, Model model){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
             model.addAttribute("errorMsg", "Bad data!");
@@ -100,13 +101,8 @@ public class EventController {
         Optional<Event> result = eventRepository.findById(eventId);
 
         Event eventToEdit = result.get();
-        eventToEdit.setDescription(event.getDescription());
-        eventToEdit.setContactEmail(event.getContactEmail());
-        eventToEdit.setEventCategory(event.getEventCategory());
-        eventToEdit.setName(event.getName());
-        eventToEdit.setAttendees(event.getAttendees());
-        eventToEdit.setLocation(event.getLocation());
-        eventRepository.save(eventToEdit);
+        eventToEdit.setEventDetails(eventDetails); //this will still not work, just getting intelliJ to shut up about it and compile.
+
 //        Event eventToEdit.setName(event.getName()); //don't understand why this is required to satisfy intellij when eventRepository.findById should by definition return an event object.
 //        Event eventToEdit.setDescription(event.getDescription());
 //        Event eventToEdit).setContactEmail(event.getContactEmail());

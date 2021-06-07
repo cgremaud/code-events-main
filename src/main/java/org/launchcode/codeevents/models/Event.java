@@ -1,7 +1,7 @@
 package org.launchcode.codeevents.models;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 @Entity
@@ -16,6 +16,10 @@ public class Event extends AbstractEntity {
     @NotNull(message = "Please select a category.")
     private EventCategory eventCategory;
 
+    @OneToOne(cascade = CascadeType.ALL) //cascades ALL SQL operations on sub objects including create, update, delete etc.
+    @Valid
+    @NotNull
+    private EventDetails eventDetails;
 
     public Event(String name, EventCategory eventCategory) {
         this.name = name;
@@ -32,8 +36,6 @@ public class Event extends AbstractEntity {
         this.name = name;
     }
 
-
-
     public EventCategory getEventCategory() {
         return eventCategory;
     }
@@ -42,6 +44,13 @@ public class Event extends AbstractEntity {
         this.eventCategory = eventCategory;
     }
 
+    public EventDetails getEventDetails() {
+        return eventDetails;
+    }
+
+    public void setEventDetails(EventDetails eventDetails) {
+        this.eventDetails = eventDetails;
+    }
 
     @Override
     public String toString() {
