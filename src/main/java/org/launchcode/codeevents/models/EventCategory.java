@@ -2,6 +2,7 @@ package org.launchcode.codeevents.models;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +11,10 @@ public class EventCategory extends AbstractEntity {
 
     private String name;
 
-    @OneToMany(mappedBy = "eventCategory")
+    @OneToMany(mappedBy = "eventCategory") //eventCategory is the field of Event that determines which EventCategory it is mapped to.
     private final List<Event> events = new ArrayList<>(); //why is this final? I guess cause lists are mutable? but then there's no real diff between final and not?
 
-    public EventCategory(String name) {
+    public EventCategory(@Size(min = 3, message = "Must be at least 3 characters long") String name) {
         this.name = name;
     }
 

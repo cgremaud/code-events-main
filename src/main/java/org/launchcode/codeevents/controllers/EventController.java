@@ -7,8 +7,6 @@ import org.launchcode.codeevents.models.EventCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
-import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
@@ -82,15 +80,15 @@ public class EventController {
         return "redirect:";
     }
 
-    @GetMapping("edit/{id}") //TODO Throws an error on any GET request to /edit. Try refactoring to use a request param?
-    //it seems like it's breaking when the get request is sent,  not the post request, but i can't see anything wrong with this?
+    @GetMapping("edit/{id}")
     public String displayEditForm(Model model, @PathVariable int id) {
         Optional<Event> result = eventRepository.findById(id);
         Event eventToEdit = result.get();
-        model.addAttribute("event", eventToEdit); //this should just return an event that gets displayed by the edit form.
+        model.addAttribute("event", eventToEdit);
         return "events/edit";
     }
 
+    //TODO get this working again.
     @PostMapping("edit")
     public String processEditForm(@RequestParam int eventId, @ ModelAttribute @Valid Event event, Errors errors, Model model){
         if (errors.hasErrors()) {
@@ -99,11 +97,20 @@ public class EventController {
             return "redirect:";
         }
         //TODO Refactor this to work under persistent version.
-        Object eventToEdit = eventRepository.findById(eventId);
-        ((Event) eventToEdit).setName(event.getName()); //don't understand why this is required to satisfy intellij when eventRepository.findById should by definition return an event object.
-        ((Event) eventToEdit).setDescription(event.getDescription());
-        ((Event) eventToEdit).setContactEmail(event.getContactEmail());
-        eventRepository.save(((Event) eventToEdit));
+        Optional<Event> result = eventRepository.findById(eventId);
+
+        Event eventToEdit = result.get();
+        eventToEdit.setDescription(event.getDescription());
+        eventToEdit.setContactEmail(event.getContactEmail());
+        eventToEdit.setEventCategory(event.getEventCategory());
+        eventToEdit.setName(event.getName());
+        eventToEdit.setAttendees(event.getAttendees());
+        eventToEdit.setLocation(event.getLocation());
+        eventRepository.save(eventToEdit);
+//        Event eventToEdit.setName(event.getName()); //don't understand why this is required to satisfy intellij when eventRepository.findById should by definition return an event object.
+//        Event eventToEdit.setDescription(event.getDescription());
+//        Event eventToEdit).setContactEmail(event.getContactEmail());
+//        eventRepository.save(((Event) eventToEdit));
         return "redirect:";
     }
 }
