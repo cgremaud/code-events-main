@@ -1,6 +1,7 @@
 package org.launchcode.codeevents.models;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -8,6 +9,10 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class EventDetails extends AbstractEntity {
+
+    @OneToOne(mappedBy = "eventDetails")
+    private Event event;
+
     @NotBlank(message = "email cannot be blank")
     @Email(message = "Invalid email address.") //this only checks to see if it's X@Y, doesn't need a .com or anything to pass validation.
     private String contactEmail;
